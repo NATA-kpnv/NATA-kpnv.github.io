@@ -93,6 +93,22 @@
             background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
             animation: floatHearts 5s linear infinite;
         }
+        @media (max-width: 600px) {
+    .container {
+        margin-top: 100px; /* Уменьшаем отступ сверху */
+        margin-bottom: 100px; /* Уменьшаем отступ снизу */
+    }
+
+    .button {
+        display: block;
+        margin: 20px auto 0 auto; /* Центрируем кнопку */
+        width: 80%; /* Делаем кнопку шире для удобства на мобильных */
+    }
+
+    .envelope {
+        transform: rotate(0deg); /* Убираем наклон для лучшей видимости */
+    }
+}
     </style>
 </head>
 <body>
