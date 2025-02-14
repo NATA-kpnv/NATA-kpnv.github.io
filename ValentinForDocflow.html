@@ -52,29 +52,46 @@
             text-align: center;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             opacity: 0;
-            transform: translateY(120px);
+            transform: translateY(80px); /* Ближе к конверту */
             transition: all 0.5s ease-in-out;
             z-index: 3;
         }
         .envelope.open .message {
             opacity: 1;
-            transform: translateY(-140px);
+            transform: translateY(-80px); /* Теперь текст не улетает слишком высоко */
             color: black;
-            font-size: 26px;
+            font-size: 24px;
         }
-        .button {
-            margin-top: -20px;
-            padding: 10px 20px;
+        .button-text {
             font-size: 20px;
-            background-color: #ff4081;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+            .envelope {
+                width: 280px;
+                height: 200px;
+                transform: rotate(0deg);
+            }
+            .message {
+                width: 240px;
+                font-size: 18px;
+                transform: translateY(60px); /* Еще ближе к конверту на мобильных */
+            }
+            .envelope.open .message {
+                transform: translateY(-60px);
+            }
+            .button-text {
+                font-size: 18px;
+            }
         }
         .container {
             margin-top: 120px; /* Увеличен отступ для поднятия блока с конвертом */
-            margin-bottom: 120px; /* Добавлен нижний отступ */
+            margin-bottom: 80px; /* Добавлен нижний отступ */
         }
         .footer {
             margin-top: 30px;
