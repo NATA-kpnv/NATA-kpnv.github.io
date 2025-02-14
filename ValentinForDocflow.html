@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Devs!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow: hidden;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #ff4081;
+            font-size: 36px;
+        }
+        p {
+            font-size: 24px;
+        }
+        .envelope {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            margin: 80px auto 50px auto;
+            background-color: #ff4081;
+            border-radius: 10px 10px 40px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: visible;
+            transform: rotate(-10deg);
+            transition: all 0.5s ease;
+        }
+        .envelope.open {
+            background-color: #ffccdd;
+            transform: rotate(0deg);
+        }
+        .message {
+            position: absolute;
+            width: 300px;
+            height: auto;
+            background: #ffe6f0;
+            color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(120px);
+            transition: all 0.5s ease-in-out;
+            z-index: 3;
+        }
+        .envelope.open .message {
+            opacity: 1;
+            transform: translateY(-140px);
+            color: black;
+            font-size: 26px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            margin-top: 150px; /* Увеличен отступ для поднятия блока с конвертом */
+            margin-bottom: 150px; /* Добавлен нижний отступ */
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 22px;
+            color: #ff80ab;
+            font-weight: bold;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+            animation: floatHearts 5s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, Devs!</h1>
+    <p><strong>Дорогие сотрудники Докфлоу БЕЛ, спасибо за ваш вклад в код и уют в команде! 💖</strong></p>
+    <div class="container">
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="message" id="message">Нажмите, чтобы открыть валентинку!</div>
+    </div>
+    <button class="button" onclick="openEnvelope()">Получить Валентинку</button>
+    <p class="footer">Вы — лучший commit в нашей компании! 💾❤️</p>
+    </div>
+    <script>
+        const messages = [
+            "❤️ С Днем святого Валентина! Пусть этот день подарит вам отличное настроение, улыбки и приятные сюрпризы! 💖",
+            "💙 Коллеги, с 14 февраля! Пусть в работе будет больше вдохновения, а в жизни – теплых моментов и хороших людей рядом. 💙",
+            "💜 14 февраля – повод напомнить, что любовь бывает разной. Например, любовь к кофе, к пятнице и к успешным проектам! 💜",
+            "💛 Пусть ваш код компилируется без ошибок, а жизнь – без багов и зависаний! ❤️",
+            "💖 Желаю вам бесконечного цикла радости и успешных запросов в базу счастья! 💖",
+            "💚 Пусть ваши задачи закрываются без дедлайнов, а настроение всегда остается на high priority! 💚",
+            "🧡 Ты – тот самый идеальный merge request, который улучшает наш общий проект! 🧡",
+            "💙 Пусть в вашей жизни будет больше commit'ов счастья и pull request'ов удачи! 💙",
+            "💜 День святого Валентина – это как git pull: обновляй свои эмоции и получай только лучшие изменения! 💜",
+            "❤️ Пусть ваша жизнь будет без ошибок 404 и всегда найдет правильный путь! 💖"
+        ];
+
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const message = document.getElementById('message');
+            message.innerText = messages[Math.floor(Math.random() * messages.length)];
+            envelope.classList.add('open');
+        }
+
+        function createHearts() {
+            setInterval(() => {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = window.innerHeight + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 500);
+        }
+
+        createHearts();
+    createHearts();
+    </script>
+</body>
