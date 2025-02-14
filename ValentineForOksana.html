@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оксана, с Днем святого Валентина!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffebf0;
+            color: #880e4f;
+            overflow: hidden;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #d81b60;
+            font-size: 36px;
+        }
+        p {
+            font-size: 24px;
+        }
+        .envelope {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            margin: 80px auto 50px auto;
+            background-color: #d81b60;
+            border-radius: 10px 10px 40px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: visible;
+            transform: rotate(-5deg);
+            transition: all 0.5s ease;
+        }
+        .envelope.open {
+            background-color: #ff80ab;
+            transform: rotate(0deg);
+        }
+        .message {
+            position: absolute;
+            width: 300px;
+            height: auto;
+            background: #fff0f5;
+            color: #880e4f;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.5s ease-in-out;
+            z-index: 3;
+        }
+        .envelope.open .message {
+            opacity: 1;
+            transform: translateY(-80px);
+            color: black;
+            font-size: 24px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 22px;
+            color: #d81b60;
+            font-weight: bold;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+            animation: floatHearts 5s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оксана, с Днем святого Валентина!</h1>
+    <p><strong>Любимая, этот сайт только для тебя! ❤️</strong></p>
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="message" id="message">Нажми, чтобы открыть мое признание!</div>
+    </div>
+    <button class="button" onclick="openEnvelope()">Получить Валентинку</button>
+    <p class="footer">Ты — мое самое дорогое сокровище! 💖</p>
+    <script>
+        const messages = [
+            "❤️ Оксана, ты делаешь каждый мой день особенным! Люблю тебя! 💖",
+            "💙 Ты мое вдохновение, моя радость, моя вселенная! 💙",
+            "💜 Спасибо, что ты есть в моей жизни! Ты самая лучшая! 💜",
+            "💛 Я счастлив, что могу называть тебя своей женой! ❤️",
+            "💖 Ты мой свет, моя опора, мое счастье! 💖",
+            "💚 Каждая секунда с тобой — бесценный подарок! 💚",
+            "🧡 Ты заполняешь мою жизнь любовью и теплом! 🧡",
+            "💙 Пусть наша любовь будет вечной, как бесконечный цикл радости! 💙",
+            "💜 Ты моя самая прекрасная история, моя лучшая глава! 💜",
+            "❤️ С тобой каждый день — это праздник! 💖"
+        ];
+
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const message = document.getElementById('message');
+            message.innerText = messages[Math.floor(Math.random() * messages.length)];
+            envelope.classList.add('open');
+        }
+
+        function createHearts() {
+            setInterval(() => {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = window.innerHeight + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 500);
+        }
+
+        createHearts();
+    </script>
+</body>
+</html>
