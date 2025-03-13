@@ -1,0 +1,40 @@
+let oVBox = new sap.m.VBox();
+let signFileFlag = oRow.oCARDCOMM.X_SIGNFILE_BTN;
+if (signFileFlag) {
+    let oSignButton = new sap.m.Button({
+        text: this.getBundle().getText("sign"),
+        press: function() {
+            let selectedItems = oUploadCollection.getSelectedItems();
+            function extractParam(sUrl, param) {
+                let match = sUrl.match(new RegExp(`${param}='([^']+)'`));
+                return match ? match[1] : null;
+            }
+            selectedItems.forEach(selectedItem => {
+                let fileUrl = selectedItem.getUrl();
+                let recExtId = extractParam(selectedItem.mProperties.url, "REC_EXT_ID");
+                let version = extractParam(selectedItem.mProperties.url, "VERSION");
+                let signUrl = `mydss://sign?url=${encodeURIComponent(fileUrl)}&callback=${encodeURIComponent(window.location.href)}`;
+                window.location.href = signUrl;
+            });
+        }.bind(this)
+    });
+    oVBox.addItem(oSignButton);
+}
+
+window.addEventListener("load", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const signedFileUrl = urlParams.get("signed_file");
+    if (signedFileUrl) {
+        fetch(signedFileUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                let a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "signed_document.pdf";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            })
+            .catch(error => console.error("Error fetching signed file: ", error));
+    }
+});
