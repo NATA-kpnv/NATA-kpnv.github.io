@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDSS Подписание</title>
+</head>
+<body>
+    <h2>Подписание документа через MyDSS</h2>
+    <label for="docUrl">Введите URL документа:</label>
+    <input type="text" id="docUrl" placeholder="https://drive.google.com/...">
+    <button onclick="checkAndSign()">Подписать</button>
+    <p id="status"></p>
+    
+    <script>
+        function checkAndSign() {
+            let url = document.getElementById("docUrl").value;
+            if (!url) {
+                alert("Введите URL документа!");
+                return;
+            }
+            
+            let myDssUrl = `mydss://sign?url=${encodeURIComponent(url)}`;
+            
+            // Пробуем открыть MyDSS
+            let iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = myDssUrl;
+            document.body.appendChild(iframe);
+            
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+                document.getElementById("status").innerText = "MyDSS открыт. Подпишите документ в приложении.";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
