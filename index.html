@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Колесо Фортуны</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Крути колесо и выигрывай подарки!</h1>
+  <div class="wheel-container">
+    <canvas id="wheel" width="500" height="500"></canvas>
+    <button id="spin">Крутить</button>
+    <div id="pointer"></div>
+  </div>
+  <div id="result" class="hidden">
+    <p>Вы выиграли: <span id="prize-name"></span></p>
+    <form id="contact-form">
+      <label for="contact">Введите ваш контакт (телефон или соцсеть):</label><br>
+      <input type="text" id="contact" name="contact" required><br>
+      <button type="submit">Забрать подарок</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
